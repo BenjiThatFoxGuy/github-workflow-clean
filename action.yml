@@ -1,0 +1,30 @@
+  name: github-workflow-clean
+  description: 'Clean up github workflow'
+  branding:
+    icon: 'delete'
+    color: 'red'
+  inputs:
+    delete-level:
+      description: 'The level of delete, can be one of repo, workflow'
+      required: true
+    token:
+      description: 'The github token'
+      required: true
+    owner:
+      description: 'The owner of the github repo'
+      required: true
+    repo:
+      description: 'The repo of the github repo'
+      required: true
+    workflow:
+      description: 'The workflow name of the github repo'
+      required: false
+  runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    env:
+      GITHUB_DELETE_LEVEL: ${{inputs.delete-level}}
+      GITHUB_TOKEN: ${{inputs.token}}
+      GITHUB_OWNER: ${{inputs.owner}}
+      GITHUB_REPO: ${{inputs.repo}}
+      GITHUB_WORKFLOW_NAME: ${{inputs.workflow}}
