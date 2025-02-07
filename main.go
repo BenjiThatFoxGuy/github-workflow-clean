@@ -46,13 +46,10 @@ func getWorkflows(token, owner, repo, workflowName string, deleteLevel string) [
 	var filtered []Workflow
 	for _, workflow := range data.Workflows {
 		if deleteLevel == "repo" {
-			if strings.Contains(workflow.State, "disabled") {
-				filtered = append(filtered, workflow)
-			}
-
+			filtered = append(filtered, workflow)
 		}
 		if deleteLevel == "workflow" {
-			if strings.Contains(workflow.Name, workflowName) && strings.Contains(workflow.State, "disabled") {
+			if strings.Contains(workflow.Name, workflowName) {
 				filtered = append(filtered, workflow)
 			}
 		}
