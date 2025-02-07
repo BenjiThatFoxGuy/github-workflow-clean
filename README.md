@@ -1,7 +1,7 @@
 ## Github Mass Workflow Clean Tool
 
 ### Introduction  
-This tool is designed to clean up the workflow which has been disabled.  
+This tool is designed to clean up the workflow runs, regardless of whether the workflow is disabled or not. This is a fork of the original tool which only cleaned up disabled workflows.
 
 ### Prerequisites
 1.  Install Docker in your machine.  
