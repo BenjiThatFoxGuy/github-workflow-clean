@@ -10,7 +10,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Clean up workflow
-          uses: benjithatfoxguy/github-workflow-clean-action@v1
+          uses: benjithatfoxguy/github-workflow-clean@v1
           with:
                 delete-level: 'repo'
                 token: ${{ secrets.GH_TOKEN }}
