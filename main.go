@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 	"sync"
-	"time"
 )
 
 type Workflow struct {
@@ -242,22 +241,10 @@ func main() {
 	for _, workflow := range filteredWorkflows {
 		fmt.Printf("%+v\n", workflow)
 		workflowID := workflow.ID
-		retry := 0
-		for {
-			if retry > 3 {
-				break
-			}
-			runs := getWorkflowRuns(token, owner, repo, workflowID)
-			fmt.Println("numbers need to be deleted:", len(runs))
-			needReturn := deleteWorkflowRun(token, owner, repo, runs)
-			if len(needReturn) == 0 {
-				break
-			}
-			println("retrying to delete failed runs, sleep 1 minutes")
-			time.Sleep(60 * time.Second)
-			retry++
-		}
-
+		runs := getWorkflowRuns(token, owner, repo, workflowID)
+		fmt.Println("numbers need to be deleted:", len(runs))
+		deleteWorkflowRun(token, owner, repo, runs)
 	}
+
 	println("All runs deleted successfully")
 }
